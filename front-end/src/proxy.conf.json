@@ -1,0 +1,9 @@
+{
+    "/api": {
+      "target": "http://localhost:8080/desafio-framework",
+      "secure": false,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  }
