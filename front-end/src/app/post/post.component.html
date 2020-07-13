@@ -1,10 +1,50 @@
-<div class="card">
-    <div class="card-header">
-      Featured
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Criar post
+</button>
+
+<div *ngFor="let post of posts">
+    
+    <div class="card">
+        <div class="card-header">
+            {{post.titulo}}
+        </div>
+        <div class="card-body">
+            <p [innerHTML]="post.conteudo">
+            </p>
+            <a href="#" class="btn btn-danger">Excluir</a>
+        </div>
     </div>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Novo Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+
+                <div class="form-group">
+                  <label for="titulo-post">Título do post</label>
+                  <input id="titulo-post" type="text" [(ngModel)]="post.titulo" name="titulo" class="form-control" >
+                </div>
+                <div class="form-group">
+                  <label for="conteudo-post">Conteúdo do post</label>
+                  <textarea  id="conteudo-post" [(ngModel)]="post.conteudo" name="conteudo" class="form-control" rows="3"></textarea>
+                </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">fechar</button>
+          <button type="button" class="btn btn-primary" (click)="createNewPost()">Criar post</button>
+        </div>
+      </div>
     </div>
   </div>

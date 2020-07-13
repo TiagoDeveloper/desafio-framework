@@ -40,4 +40,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return this.usuarioRepository.findById(id).orElse(null);
 	}
 	
+	@Override
+	public Usuario findByEmail(String email) {
+		return this.usuarioRepository.findByEmail(email);
+	}
+	
 }

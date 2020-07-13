@@ -45,6 +45,9 @@ INSERT INTO seguranca.usuarios (nome, email, "password") VALUES('admin', 'admin@
 
 
 INSERT INTO blog.posts (titulo, conteudo, id_usuario) VALUES('Titulo teste', 'conteudo teste', 1);
+INSERT INTO blog.posts (titulo, conteudo, id_usuario) VALUES('Titulo teste', 'conteudo teste', 1);
+INSERT INTO blog.posts (titulo, conteudo, id_usuario) VALUES('Titulo teste', 'conteudo teste', 1);
+INSERT INTO blog.posts (titulo, conteudo, id_usuario) VALUES('Titulo teste', 'conteudo teste', 1);
 
 --CREATE TABLE seguranca.permissoes (
 --	id serial NOT NULL PRIMARY KEY,

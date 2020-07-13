@@ -10,27 +10,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.framework.models.Post;
-import com.framework.services.PostService;
+import com.framework.models.Usuario;
+import com.framework.services.UsuarioService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/usuarios")
 //@Slf4j
 @AllArgsConstructor
-public class PostsController {
+public class UsuarioController {
 	
-	public final PostService postService;
+	public final UsuarioService usuarioService;
 	
 	@GetMapping
-	public ResponseEntity<List<Post>> getAllPosts(){
-		return new ResponseEntity<List<Post>>(this.postService.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<Usuario>> getAllUsuarios(){
+		return new ResponseEntity<List<Usuario>>(this.usuarioService.findAll(), HttpStatus.OK);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Post> createNewPost(@RequestBody Post post){
-		return new ResponseEntity<Post>(this.postService.findById(1), HttpStatus.OK);
+	public ResponseEntity<Usuario> createNewUsuario(@RequestBody Usuario usuario){
+		return new ResponseEntity<Usuario>(this.usuarioService.findById(1), HttpStatus.OK);
 	}
 
 }

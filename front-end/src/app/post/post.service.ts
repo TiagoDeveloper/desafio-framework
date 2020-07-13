@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Post } from '../models/post';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,12 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  getAllPosts(){
-    return this.http.get("api/posts");
+  getAllPosts(): Observable<Array<Post>>{
+    return this.http.get<Array<Post>>("api/posts");
   }
+
+  createNewPost(post = {titulo: 'teste', conteudo: 'novo conteudo'}): Observable<Post>{
+    return this.http.post<Post>("api/posts", post);
+  }
+
 }
