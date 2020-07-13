@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { LoginService } from './login.service';
 import { Usuario } from '../models/usuario';
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +10,31 @@ import { Usuario } from '../models/usuario';
 })
 export class LoginComponent implements OnInit {
 
-  usuario: Usuario = new Usuario();
+  @ViewChild('fechar') fechaModal: ElementRef;
 
-  constructor(private loginService: LoginService) { }
+  usuario: Usuario = new Usuario();
+  newUsuario: Usuario = new Usuario();
+  confirmarSenha: string;
+
+  constructor(
+    private loginService: LoginService,
+    private usuarioService: UsuarioService
+    ) { }
 
   ngOnInit(): void {
   }
 
   login() {
     this.loginService.login(this.usuario);
+  }
+
+  cadastrarUsuario(form){
+    if(form.valid){
+      this.usuarioService.createNewUsuario(this.newUsuario).subscribe(usuarioCadastrado => {
+        this.newUsuario = usuarioCadastrado;
+        this.fechaModal.nativeElement.click();
+      });
+    }
   }
 
 }

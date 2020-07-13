@@ -30,7 +30,7 @@ public class UsuarioController {
 	
 	@PostMapping
 	public ResponseEntity<Usuario> createNewUsuario(@RequestBody Usuario usuario){
-		return new ResponseEntity<Usuario>(this.usuarioService.findById(1), HttpStatus.OK);
+		return new ResponseEntity<Usuario>(this.usuarioService.save(usuario), HttpStatus.OK);
 	}
 
 }

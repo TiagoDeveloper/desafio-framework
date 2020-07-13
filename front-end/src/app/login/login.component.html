@@ -1,12 +1,120 @@
 <div class="login-container">
-    <div class="form-group">
-        <label for="username">Email</label>
-        <input  [(ngModel)]="usuario.username" type="email" class="form-control" id="username">
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input [(ngModel)]="usuario.password" type="password" class="form-control" id="password">
-    </div>
-    <button (click)="login()" class="btn btn-primary">Login</button>
-    <button (click)="login()" class="btn btn-primary">Cadastrar</button>
+    <form id="login" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && login()" novalidate>
+        <div class="form-group">
+            <label for="email-login">Email</label>
+            <input id="email-login" 
+                type="email" 
+                [(ngModel)]="usuario.email" 
+                #emailLogin="ngModel" 
+                [ngClass]="{'is-invalid': loginForm.submitted && emailLogin.invalid}" 
+                name="email" class="form-control" required email>
+    
+            <div *ngIf="loginForm.submitted && emailLogin.invalid" class="invalid-feedback">
+                <div *ngIf="emailLogin.errors.required">Email é obrigatório</div>
+                <div *ngIf="emailLogin.errors.email">Endereço de email inválido</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password-login">Password</label>
+            <input id="password-login" 
+                type="password" 
+                [(ngModel)]="usuario.password" 
+                #passwordLogin="ngModel"
+                [ngClass]="{'is-invalid': loginForm.submitted && passwordLogin.invalid}"
+                name="password" class="form-control" required minlength="4">
+
+            <div *ngIf="loginForm.submitted && passwordLogin.invalid" class="invalid-feedback">
+                <div *ngIf="passwordLogin.errors.required">A senha é obrigatório</div>
+                <div *ngIf="passwordLogin.errors.minlength">A senha tem que ter pelo menos 4 caracteres</div>
+            </div>
+        </div>
+    </form>
+
+    <button type="submit" form="login" class="btn btn-primary">Login</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#cadastrar-usuario">Cadastrar</button>
 </div>
+
+
+<div class="modal fade" id="cadastrar-usuario" tabindex="-1" role="dialog" aria-labelledby="cadastrar-usuario-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cadastrar-usuario-label">Novo Usuário</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+
+            <form id="cadastrarUsuarioForm" #f="ngForm" (ngSubmit)="f.form.valid && cadastrarUsuario(f)" novalidate>
+
+                <div class="form-group">
+                    <label for="nome-usuario">Nome</label>
+                    <input id="nome-usuario" 
+                        type="text" 
+                        [(ngModel)]="newUsuario.nome" 
+                        #nome="ngModel" 
+                        [ngClass]="{'is-invalid': f.submitted && nome.invalid}" 
+                        name="nome" class="form-control" required>
+                        
+                    <div class="invalid-feedback">
+                        <div>Nome é obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email-usuario">Email</label>
+                    <input id="email-usuario" 
+                        type="email" 
+                        [(ngModel)]="newUsuario.email" 
+                        #email="ngModel" 
+                        [ngClass]="{'is-invalid': f.submitted && email.invalid}" 
+                        name="email" class="form-control" required email>
+
+                    <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                        <div *ngIf="email.errors.required">Email é obrigatório</div>
+                        <div *ngIf="email.errors.email">Endereço de email inválido</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="senha-usuario">Senha</label>
+                    <input id="senha-usuario" 
+                        type="password" 
+                        [(ngModel)]="newUsuario.password" 
+                        #password="ngModel" 
+                        [ngClass]="{'is-invalid': f.submitted && password.invalid}"
+                        name="password" class="form-control" required minlength="4">
+
+                    <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                        <div *ngIf="password.errors.required">A senha é obrigatório</div>
+                        <div *ngIf="password.errors.minlength">A senha tem que ter pelo menos 4 caracteres</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirma-senha-usuario">Confirmar senha</label>
+                    <input id="confirma-senha-usuario" 
+                        type="password" 
+                        [(ngModel)]="confirmarSenha"  
+                        #confirmPassword="ngModel" 
+                        [ngClass]="{'is-invalid': f.submitted && confirmPassword.invalid}"
+                        name="confirmarSenha" class="form-control" required minlength="4" [pattern]="password.value">
+
+                    
+                    <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
+                        <div *ngIf="confirmPassword.errors.required">A senha é obrigatório</div>
+                        <div *ngIf="confirmPassword.errors.minlength">A senha tem que ter pelo menos 4 caracteres</div>
+                        <div *ngIf="confirmPassword.errors.pattern">A senha de confirmação deve ser a mesma que a senha.</div>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">fechar</button>
+          <button type="submit" form="cadastrarUsuarioForm" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>

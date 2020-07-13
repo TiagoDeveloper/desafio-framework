@@ -31,16 +31,16 @@ public class LoginController {
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 		try {
 			authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
+					new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword())
 			);
 		}catch(BadCredentialsException e) {
 			throw new Exception("Usuário ou senha está incorreto!!!", e);
 		}
 		
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
 		
 		final String jwt = jwtServiceImpl.generateToken(userDetails);
-		
+		//TODO devolver o usuário autenticado
 		return new ResponseEntity<>(new AuthenticationResponse(jwt), HttpStatus.OK);
 	}
 }

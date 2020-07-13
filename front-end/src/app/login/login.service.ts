@@ -26,15 +26,7 @@ export class LoginService {
 
     });
 
-    // if(usuario.username === 'admin@framework.com.br'
-    //   && usuario.password === 'root'){
-    //     this.usuarioAutenticado = true;
-    //     this.logado.emit(true);
-    //     this.router.navigate(['/home']);
-    //   }else{
-    //     this.logado.emit(false);
-    //     this.usuarioAutenticado = false;
-    //   }
+
   }
 
   isUsuarioAutenticado(): boolean{

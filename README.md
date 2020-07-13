@@ -1,7 +1,7 @@
 # desafio-framework
 
 Para o desenvolvimento desse projeto, foi usado o java 11,
-spring boot 2.3.1.RELEASE, postgresql 42.2.14, lombok 1.18.12 e
+spring boot 2.3.1.RELEASE, postgresql latest, lombok 1.18.12 e
 o angular 9.
 
 Após o clone do projeto, começando pelo back-end:
