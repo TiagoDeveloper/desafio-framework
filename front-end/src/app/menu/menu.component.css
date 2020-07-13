@@ -2,3 +2,12 @@
     display: block;
     margin-bottom: 20px;
 }
+
+#logout {
+    color: white;
+}
+
+#logout:hover{
+    color: #dddd;
+    cursor: pointer;
+}

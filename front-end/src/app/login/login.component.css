@@ -3,6 +3,11 @@
     margin: 0 auto;
 }
 
-.login-container > button{
+#login-btn{
     margin-right: 5px;
+}
+
+.login-container-btn{
+    display: flex;
+    justify-content: space-between;
 }

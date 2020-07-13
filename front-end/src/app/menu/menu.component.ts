@@ -16,4 +16,8 @@ export class MenuComponent implements OnInit {
     this.loginService.logado.subscribe(logado => this.logado = logado)
   }
 
+  logout(){
+    this.loginService.logout();
+  }
+
 }
