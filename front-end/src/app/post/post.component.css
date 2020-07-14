@@ -2,3 +2,24 @@
     display: block;
     padding: 20px 0 20px;
 }
+#menu-post{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.card{
+    margin-bottom: 10px;
+}
+
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}

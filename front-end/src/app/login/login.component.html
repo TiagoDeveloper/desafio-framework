@@ -1,5 +1,8 @@
 <div class="login-container">
     <form id="login" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && login()" novalidate>
+        <div *ngIf="loginErro" class="alert alert-danger" role="alert">
+            Ocorreu um erro de codigo {{status}} no servidor
+        </div>
         <div class="form-group">
             <label for="email-login">Email</label>
             <input id="email-login" 
@@ -114,7 +117,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">fechar</button>
+          <button #fechar type="button" class="btn btn-secondary" data-dismiss="modal">fechar</button>
           <button type="submit" form="cadastrarUsuarioForm" class="btn btn-primary">Salvar</button>
         </div>
       </div>

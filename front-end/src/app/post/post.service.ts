@@ -14,8 +14,12 @@ export class PostService {
     return this.http.get<Array<Post>>("api/posts");
   }
 
-  createNewPost(post = {titulo: 'teste', conteudo: 'novo conteudo'}): Observable<Post>{
+  createNewPost(post): Observable<Post>{
     return this.http.post<Post>("api/posts", post);
+  }
+
+  deletePost(idPost) {
+    return this.http.delete(`api/posts/${idPost}`);
   }
 
 }

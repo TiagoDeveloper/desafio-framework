@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   usuario: Usuario = new Usuario();
   newUsuario: Usuario = new Usuario();
   confirmarSenha: string;
+  loginErro: boolean = false;
+  status: any;
 
   constructor(
     private loginService: LoginService,
@@ -25,7 +27,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loginService.login(this.usuario);
+    this.loginService.login(this.usuario,{ callback: (status) => { 
+      this.loginErro = true;
+      this.status = status;
+    }});
   }
 
   cadastrarUsuario(form){
